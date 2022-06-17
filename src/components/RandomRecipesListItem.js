@@ -1,17 +1,17 @@
-import React, { useState, useEffect, useContext } from "react";
-import FavoriteRecipesContext from '../store/favorite-recipes-context';
+import React, { useContext, useEffect, useState } from 'react'
 import { ReactComponent as HeartRegular } from '../assets/heart-regular.svg';
 import { ReactComponent as HeartSolid } from '../assets/heart-solid.svg'
-import styles from './MealListItem.module.css'
+import FavoriteRecipesContext from '../store/favorite-recipes-context';
+import styles from './RandomRecipesListItem.module.css'
 
-export default function MealListItem({ meal }) {
+function RandomRecipesListItem({ randomRecipe }) {
     const [imageUrl, setImageUrl] = useState("");
     const favoritesCtx = useContext(FavoriteRecipesContext);
-    const isFavoriteReceipt = favoritesCtx.favoriteRecipeIds.find((id) => id === meal.id);
+    const isFavoriteReceipt = favoritesCtx.favoriteRecipeIds.find((id) => id === randomRecipe.id);
 
     useEffect(() => {
         fetch(
-            `https://api.spoonacular.com/recipes/${meal.id}/information?apiKey=37dfce836f234b8a9c7ba7bb0eb13dd1&includeNutrition=false`
+            `https://api.spoonacular.com/recipes/${randomRecipe.id}/information?apiKey=37dfce836f234b8a9c7ba7bb0eb13dd1&includeNutrition=false`
         )
             .then((response) => response.json())
             .then((data) => {
@@ -20,21 +20,19 @@ export default function MealListItem({ meal }) {
             .catch(() => {
                 console.log("error");
             });
-    }, [meal.id]);
-
-
+    }, [randomRecipe.id]);
 
     return (
         <div>
 
             <article>
                 <div className={styles.title_container}>
-                    <h1 className={styles.title}>{meal.title}</h1>
+                    <h1 className={styles.title}>{randomRecipe.title}</h1>
                 </div>
                 <img src={imageUrl} alt="recipe" />
                 <ul className={styles.instructions}>
-                    <li>Preparation time: {meal.readyInMinutes} minutes</li>
-                    <li>Number of servings: {meal.servings}</li>
+                    <li>Preparation time: {randomRecipe.readyInMinutes} minutes</li>
+                    <li>Number of servings: {randomRecipe.servings}</li>
                 </ul>
                 <div className={styles.favorite_hearth_container}>
                     {isFavoriteReceipt ? (
@@ -42,7 +40,7 @@ export default function MealListItem({ meal }) {
                             onClick={(e) => {
                                 e.preventDefault();
                                 e.stopPropagation();
-                                favoritesCtx.removeFavorite(meal.id);
+                                favoritesCtx.removeFavorite(randomRecipe.id);
                             }}
                         />
                     ) : (
@@ -50,15 +48,17 @@ export default function MealListItem({ meal }) {
                             onClick={(e) => {
                                 e.stopPropagation();
                                 e.preventDefault();
-                                favoritesCtx.addFavorite(meal.id);
+                                favoritesCtx.addFavorite(randomRecipe.id);
                                 console.log(favoritesCtx);
                             }}
                         />
                     )}
                 </div>
 
-                <a href={meal.sourceUrl}>Go to Recipe</a>
+                <a href={randomRecipe.sourceUrl}>Go to Recipe</a>
             </article>
         </div>
-    );
+    )
 }
+
+export default RandomRecipesListItem

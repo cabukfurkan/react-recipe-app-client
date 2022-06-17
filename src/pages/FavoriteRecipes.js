@@ -4,7 +4,7 @@ import { useState } from "react";
 import MealListItem from "../components/MealListItem";
 import useFetchAll from "../hooks/useFetchAll";
 import Navbar from "../layouts/Navbar";
-import FavoritesContext from "../store/favorites-recipe-context";
+import FavoritesContext from "../store/favorite-recipes-context";
 import styles from './FavoriteRecipes.module.css'
 
 export default function FavoriteRecipes() {
