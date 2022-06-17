@@ -8,7 +8,7 @@ export default function MealList({ mealData }) {
     return (
         <main>
             <section className={styles.nutrients}>
-                <h1>Macros</h1>
+                <h1>-----</h1>
                 <ul>
                     <li>Calories: {nutrients.calories.toFixed(0)}</li>
                     <li>Carbohydrates: {nutrients.carbohydrates.toFixed(0)}</li>

@@ -11,7 +11,7 @@ function RandomRecipesListItem({ randomRecipe }) {
 
     useEffect(() => {
         fetch(
-            `https://api.spoonacular.com/recipes/${randomRecipe.id}/information?apiKey=37dfce836f234b8a9c7ba7bb0eb13dd1&includeNutrition=false`
+            `https://api.spoonacular.com/recipes/${randomRecipe.id}/information?apiKey=d835eda74cff40828b203c1ee564e1cf&includeNutrition=false`
         )
             .then((response) => response.json())
             .then((data) => {
@@ -24,7 +24,6 @@ function RandomRecipesListItem({ randomRecipe }) {
 
     return (
         <div>
-
             <article>
                 <div className={styles.title_container}>
                     <h1 className={styles.title}>{randomRecipe.title}</h1>

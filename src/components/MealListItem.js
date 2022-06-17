@@ -11,7 +11,7 @@ export default function MealListItem({ meal }) {
 
     useEffect(() => {
         fetch(
-            `https://api.spoonacular.com/recipes/${meal.id}/information?apiKey=37dfce836f234b8a9c7ba7bb0eb13dd1&includeNutrition=false`
+            `https://api.spoonacular.com/recipes/${meal.id}/information?apiKey=d835eda74cff40828b203c1ee564e1cf&includeNutrition=false`
         )
             .then((response) => response.json())
             .then((data) => {
@@ -26,7 +26,6 @@ export default function MealListItem({ meal }) {
 
     return (
         <div>
-
             <article>
                 <div className={styles.title_container}>
                     <h1 className={styles.title}>{meal.title}</h1>

@@ -1,0 +1,48 @@
+article {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 2rem;
+  margin: 0 1rem;
+  max-width: 300px;
+  box-shadow: 0 4px 8px 2px rgba(77, 77, 77, 0.15);
+}
+.title_container {
+  height: 30%;
+}
+.title {
+  font-size: 1.5rem;
+}
+
+.favorite_hearth_container {
+  width: 40px;
+  margin-bottom: 1rem;
+}
+
+.instructions {
+  font-size: 0.9rem;
+  margin-bottom: 1rem;
+  align-self: start;
+}
+img {
+  width: 100%;
+  margin-bottom: 1rem;
+}
+
+a {
+  text-decoration: none;
+  background-color: #16753b;
+  color: #f3f3f3;
+  width: fit-content;
+  padding: 0.5rem 1rem;
+}
+
+a:hover {
+  background-color: #68d58b;
+  cursor: pointer;
+}
+
+ul {
+  list-style: none;
+}
