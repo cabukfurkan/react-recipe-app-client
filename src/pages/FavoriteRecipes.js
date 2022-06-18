@@ -1,7 +1,7 @@
 import React, { useContext } from "react";
 import { useEffect } from "react";
 import { useState } from "react";
-import MealListItem from "../components/MealListItem";
+import RecipeItem from "../components/RecipeItem";
 import useFetchAll from "../hooks/useFetchAll";
 import Navbar from "../layouts/Navbar";
 import FavoritesContext from "../store/favorite-recipes-context";
@@ -24,7 +24,7 @@ export default function FavoriteRecipes() {
             <Navbar />
             <div className={styles.favorite_recipes_container}>
                 {recipes?.map((recipe) => (
-                    <MealListItem meal={recipe} />
+                    <RecipeItem recipe={recipe} />
                 ))}
             </div>
         </main>

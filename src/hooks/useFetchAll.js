@@ -1,8 +1,9 @@
 import { useState } from 'react'
+import { API_KEY } from '../apiKey';
 
 function useFetchAll(url, setData, source) {
     const [isLoading, setIsLoading] = useState(true);
-    const apiKeyUrlRest = `/information?apiKey=46c9e3436c5e426990bc58ddc541257b&includeNutrition=false`
+    const apiKeyUrlRest = `/information?apiKey=${API_KEY}&includeNutrition=false`
 
     const fetchDatas = async () => {
         setIsLoading(true)

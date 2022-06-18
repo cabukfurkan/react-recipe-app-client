@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import MealList from "../components/MealList";
 import Navbar from "../layouts/Navbar";
 import styles from './MealPlanner.module.css'
+import { API_KEY } from "../apiKey";
 
 
 function MealPlanner() {
@@ -10,7 +11,7 @@ function MealPlanner() {
 
     function getMealData() {
         fetch(
-            `https://api.spoonacular.com/mealplanner/generate?apiKey=46c9e3436c5e426990bc58ddc541257b&timeFrame=day&targetCalories=${calories}`
+            `https://api.spoonacular.com/mealplanner/generate?apiKey=${API_KEY}&timeFrame=day&targetCalories=${calories}`
         )
             .then((response) => response.json())
             .then((data) => {

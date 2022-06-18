@@ -1,5 +1,5 @@
 import React from "react";
-import MealListItem from "./MealListItem";
+import RecipeItem from "./RecipeItem";
 import styles from './MealList.module.css'
 
 export default function MealList({ mealData }) {
@@ -18,8 +18,8 @@ export default function MealList({ mealData }) {
             </section>
 
             <section className={styles.meals}>
-                {mealData.meals.map((meal) => {
-                    return <MealListItem meal={meal} />;
+                {mealData.meals.map((recipe) => {
+                    return <RecipeItem recipe={recipe} />;
                 })}
             </section>
         </main>

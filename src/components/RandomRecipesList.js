@@ -1,15 +1,14 @@
 import React from 'react'
-import RandomRecipesListItem from './RandomRecipesListItem';
-import styles from './RandomRecipesListItem.module.css'
+import RecipeItem from './RecipeItem';
+import styles from './RandomRecipesList.module.css'
 
 function RandomRecipesList({ randomRecipes }) {
 
 
     return (
-
         <section className={styles.meals} >
-            {randomRecipes?.recipes.map((randomRecipe) => {
-                return <RandomRecipesListItem randomRecipe={randomRecipe} />;
+            {randomRecipes.recipes?.map((recipe) => {
+                return <RecipeItem recipe={recipe} />;
             })}
         </section>
 
