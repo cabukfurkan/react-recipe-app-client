@@ -14,10 +14,10 @@ function App() {
       <BrowserRouter>
         <Routes>
           <Route path='/*' element={<Home />} />
-          <Route path='/meal-planner/*' element={<MealPlanner />} />
-          <Route path="/meal-planner/:id/*" element={<RecipeDetails />} />
+          <Route path='/meal-planner' element={<MealPlanner />} />
           <Route path='/favorite-recipes' element={<FavoriteRecipes />} />
           <Route path='/recipe-finder' element={<RecipeFinder />} />
+          <Route path='/recipe-finder/:id/*' element={<RecipeDetails />} />
         </Routes>
       </BrowserRouter>
     </FavoriteRecipesContextProvider>

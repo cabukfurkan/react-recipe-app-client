@@ -4,6 +4,7 @@ import { ReactComponent as HeartRegular } from '../assets/heart-regular.svg';
 import { ReactComponent as HeartSolid } from '../assets/heart-solid.svg'
 import styles from './RecipeItem.module.css'
 import { API_KEY } from "../apiKey";
+import { Link } from "react-router-dom";
 
 export default function RecipeItem({ recipe }) {
     const [recipeData, setRecipeData] = useState("");
@@ -53,8 +54,9 @@ export default function RecipeItem({ recipe }) {
                     />
                 )}
             </div>
-
-            <a href={recipe.sourceUrl}>Go to Recipe</a>
+            <Link to={`/recipe-finder/${recipe.id}`}>
+                Recipe Details
+            </Link>
         </article>
     );
 }
