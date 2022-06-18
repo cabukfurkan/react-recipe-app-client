@@ -19,7 +19,7 @@ export default function MealList({ mealData }) {
 
             <section className={styles.meals}>
                 {mealData.meals.map((recipe) => {
-                    return <RecipeItem recipe={recipe} />;
+                    return <RecipeItem key={recipe.id} recipe={recipe} />;
                 })}
             </section>
         </main>

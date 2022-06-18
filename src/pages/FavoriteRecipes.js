@@ -24,7 +24,7 @@ export default function FavoriteRecipes() {
             <Navbar />
             <div className={styles.favorite_recipes_container}>
                 {recipes?.map((recipe) => (
-                    <RecipeItem recipe={recipe} />
+                    <RecipeItem key={recipe.id} recipe={recipe} />
                 ))}
             </div>
         </main>

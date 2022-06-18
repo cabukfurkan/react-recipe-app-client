@@ -6,7 +6,7 @@ import styles from './RecipeItem.module.css'
 import { API_KEY } from "../apiKey";
 
 export default function RecipeItem({ recipe }) {
-    const [imageUrl, setImageUrl] = useState("");
+    const [recipeData, setRecipeData] = useState("");
     const favoritesCtx = useContext(FavoriteRecipesContext);
     const isFavoriteReceipt = favoritesCtx.favoriteRecipeIds.find((id) => id === recipe.id);
 
@@ -16,7 +16,7 @@ export default function RecipeItem({ recipe }) {
         )
             .then((response) => response.json())
             .then((data) => {
-                setImageUrl(data.image);
+                setRecipeData(data);
             })
             .catch(() => {
                 console.log("error");
@@ -26,12 +26,12 @@ export default function RecipeItem({ recipe }) {
     return (
         <article className={styles.recipe_container}>
             <div className={styles.title_container}>
-                <h1 className={styles.title}>{recipe.title}</h1>
+                <h1 className={styles.title}>{recipeData.title}</h1>
             </div>
-            <img src={imageUrl} alt="recipe" />
+            <img src={recipeData.image} alt="recipe" />
             <ul className={styles.instructions}>
-                <li>Preparation time: {recipe.readyInMinutes} minutes</li>
-                <li>Number of servings: {recipe.servings}</li>
+                <li>Preparation time: {recipeData.readyInMinutes} minutes</li>
+                <li>Number of servings: {recipeData.servings}</li>
             </ul>
             <div className={styles.favorite_hearth_container}>
                 {isFavoriteReceipt ? (

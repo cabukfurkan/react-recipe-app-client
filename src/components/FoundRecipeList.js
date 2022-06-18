@@ -1,19 +1,15 @@
 import React from 'react'
+import styles from './FoundRecipeList.module.css'
 import RecipeItem from './RecipeItem';
-import styles from './RandomRecipesList.module.css'
 
-function RandomRecipesList({ recipes }) {
-
-
+function FoundRecipeList({ recipes }) {
     return (
         <section className={styles.meals} >
-            {recipes.recipes?.map((recipe) => {
+            {recipes.results?.map((recipe) => {
                 return <RecipeItem key={recipe.id} recipe={recipe} />;
             })}
         </section>
-
-
     )
 }
 
-export default RandomRecipesList
+export default FoundRecipeList

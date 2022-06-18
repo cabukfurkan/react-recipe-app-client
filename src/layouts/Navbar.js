@@ -10,6 +10,7 @@ function Navbar() {
             <div className={styles.nav}>
                 <Link className={styles.nav_link} to='/' >Home</Link>
                 <Link className={styles.nav_link} to='/meal-planner' >Plan Your meal</Link>
+                <Link className={styles.nav_link} to='/recipe-finder' >Find Recipe</Link>
                 <Link className={styles.nav_link} to='/favorite-recipes' >Favorite Recipes</Link>
             </div>
         </div>

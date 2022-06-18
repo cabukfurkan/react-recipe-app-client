@@ -1,0 +1,42 @@
+.mealPlanner {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+}
+.body_container {
+  display: flex;
+  flex-direction: column;
+}
+
+.mealPlanner_container {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+}
+
+.controls {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  margin: 2rem 0 1rem 0;
+}
+
+input {
+  text-align: center;
+  padding: 0.5rem;
+  margin-bottom: 1rem;
+}
+
+button {
+  padding: 0.5rem 1rem;
+  background-color: #16753b;
+  color: #f3f3f3;
+  border: none;
+  font-family: sans-serif;
+  font-size: 1rem;
+}
+
+button:hover {
+  cursor: pointer;
+  background-color: #68d58b;
+}

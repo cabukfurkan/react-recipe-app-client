@@ -5,13 +5,13 @@ import styles from './Home.module.css'
 import { API_KEY } from '../apiKey';
 
 function Home() {
-    const [randomRecipes, setRandomRecipes] = useState("");
+    const [recipes, setRecipes] = useState("");
 
     function getMealData() {
         fetch(`https://api.spoonacular.com/recipes/random?apiKey=${API_KEY}&number=1`)
             .then((response) => response.json())
             .then((data) => {
-                setRandomRecipes(data)
+                setRecipes(data)
             })
             .catch(() => {
                 console.log("error");
@@ -27,7 +27,7 @@ function Home() {
             </section>
 
             <div className={styles.randomRecipes_container}>
-                {randomRecipes && <RandomRecipesList randomRecipes={randomRecipes} />}
+                {recipes && <RandomRecipesList recipes={recipes} />}
             </div>
         </div>
     )
