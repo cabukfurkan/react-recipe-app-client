@@ -33,7 +33,7 @@ img {
   margin-bottom: 1rem;
 }
 
-a {
+.link {
   text-decoration: none;
   background-color: #16753b;
   color: #f3f3f3;
@@ -41,7 +41,7 @@ a {
   padding: 0.5rem 1rem;
 }
 
-a:hover {
+.link:hover {
   background-color: #68d58b;
   cursor: pointer;
 }

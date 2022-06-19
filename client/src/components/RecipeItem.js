@@ -58,7 +58,7 @@ export default function RecipeItem({ recipe }) {
                                 />
                             )}
                         </div>
-                        <Link to={`/recipe-finder/${recipe.id}`}>
+                        <Link className={styles.link} to={`/recipe-finder/${recipe.id}`}>
                             Recipe Details
                         </Link>
                     </div>
