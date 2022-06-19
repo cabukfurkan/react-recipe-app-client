@@ -11,6 +11,7 @@
 }
 .title_container {
   height: 110px;
+  align-items: flex-start;
 }
 .title {
   font-size: 1.3rem;
