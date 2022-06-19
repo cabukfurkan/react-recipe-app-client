@@ -6,6 +6,7 @@ import useFetchAll from "../hooks/useFetchAll";
 import Navbar from "../layouts/Navbar";
 import FavoritesContext from "../store/favorite-recipes-context";
 import styles from './FavoriteRecipes.module.css'
+import ReactLoading from 'react-loading'
 
 export default function FavoriteRecipes() {
     const [recipes, setRecipes] = useState()
@@ -22,11 +23,16 @@ export default function FavoriteRecipes() {
     return (
         <main>
             <Navbar />
-            <div className={styles.favorite_recipes_container}>
-                {recipes?.map((recipe) => (
-                    <RecipeItem key={recipe.id} recipe={recipe} />
-                ))}
-            </div>
+            {!recipes ? (<div><ReactLoading type='spin' color='green' width={200} /></div>)
+                : recipes.length !== 0 ? (
+                    <div className={styles.favorite_recipes_container}>
+                        {recipes?.map((recipe) => (
+                            <RecipeItem key={recipe.id} recipe={recipe} />
+                        ))}
+                    </div>
+                ) : (
+                    <h3 className={styles.info}>❤️ Like some recipe ❤️</h3>
+                )}
         </main>
     );
 }

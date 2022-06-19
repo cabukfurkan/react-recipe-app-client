@@ -5,11 +5,12 @@ import { ReactComponent as HeartSolid } from '../assets/heart-solid.svg'
 import styles from './RecipeItem.module.css'
 import { API_KEY } from "../apiKey";
 import { Link } from "react-router-dom";
+import ReactLoading from 'react-loading'
 
 export default function RecipeItem({ recipe }) {
-    const [recipeData, setRecipeData] = useState("");
+    const [recipeData, setRecipeData] = useState();
     const favoritesCtx = useContext(FavoriteRecipesContext);
-    const isFavoriteReceipt = favoritesCtx.favoriteRecipeIds.find((id) => id === recipe.id);
+    const isFavoriteRecipe = favoritesCtx.favoriteRecipeIds.find((id) => id === recipe.id);
 
     useEffect(() => {
         fetch(
@@ -25,38 +26,45 @@ export default function RecipeItem({ recipe }) {
     }, [recipe.id]);
 
     return (
-        <article className={styles.recipe_container}>
-            <div className={styles.title_container}>
-                <h1 className={styles.title}>{recipeData.title}</h1>
-            </div>
-            <img src={recipeData.image} alt="recipe" />
-            <ul className={styles.instructions}>
-                <li>Preparation time: {recipeData.readyInMinutes} minutes</li>
-                <li>Number of servings: {recipeData.servings}</li>
-            </ul>
-            <div className={styles.favorite_hearth_container}>
-                {isFavoriteReceipt ? (
-                    <HeartSolid
-                        onClick={(e) => {
-                            e.preventDefault();
-                            e.stopPropagation();
-                            favoritesCtx.removeFavorite(recipe.id);
-                        }}
-                    />
-                ) : (
-                    <HeartRegular
-                        onClick={(e) => {
-                            e.stopPropagation();
-                            e.preventDefault();
-                            favoritesCtx.addFavorite(recipe.id);
-                            console.log(favoritesCtx);
-                        }}
-                    />
-                )}
-            </div>
-            <Link to={`/recipe-finder/${recipe.id}`}>
-                Recipe Details
-            </Link>
+        <article >
+            {!recipeData ? (<div className={styles.loading}><ReactLoading type='spin' color='green' width={200} /></div>)
+                : (
+                    <div className={styles.recipe_container}>
+                        <div className={styles.title_container}>
+                            <h1 className={styles.title}>{recipeData.title}</h1>
+                        </div>
+                        <img src={recipeData.image} alt="recipe" />
+                        <ul className={styles.instructions}>
+                            <li>Preparation time: {recipeData.readyInMinutes} minutes</li>
+                            <li>Number of servings: {recipeData.servings}</li>
+                        </ul>
+                        <div className={styles.favorite_hearth_container}>
+                            {isFavoriteRecipe ? (
+                                <HeartSolid
+                                    onClick={(e) => {
+                                        e.preventDefault();
+                                        e.stopPropagation();
+                                        favoritesCtx.removeFavorite(recipe.id);
+                                    }}
+                                />
+                            ) : (
+                                <HeartRegular
+                                    onClick={(e) => {
+                                        e.stopPropagation();
+                                        e.preventDefault();
+                                        favoritesCtx.addFavorite(recipe.id);
+                                        console.log(favoritesCtx);
+                                    }}
+                                />
+                            )}
+                        </div>
+                        <Link to={`/recipe-finder/${recipe.id}`}>
+                            Recipe Details
+                        </Link>
+                    </div>
+                )
+
+            }
         </article>
     );
 }

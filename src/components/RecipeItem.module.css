@@ -7,17 +7,19 @@
   margin: 1rem 1rem;
   max-width: 300px;
   box-shadow: 0 4px 8px 2px rgba(77, 77, 77, 0.15);
+  min-height: 510px;
 }
 .title_container {
-  height: 30%;
+  height: 110px;
 }
 .title {
-  font-size: 1.5rem;
+  font-size: 1.3rem;
 }
 
 .favorite_hearth_container {
   width: 40px;
   margin-bottom: 1rem;
+  color: red;
 }
 
 .instructions {
