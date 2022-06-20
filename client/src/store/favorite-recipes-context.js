@@ -8,24 +8,19 @@ const FavoriteRecipesContext = createContext({
 });
 
 export function FavoriteRecipesContextProvider({ children }) {
-
-    //change here
     const [favoriteRecipeIds, setFavoriteRecipeIds] = useState(JSON.parse(localStorage.getItem('favoriteRecipeIds')))
 
     const updateFavListDB = async (favoriteRecipeIds) => {
         try {
             const url = "http://localhost:8080/api/updateFav";
-            const { data: res } = await axios.put(url, {
+            await axios.put(url, {
                 email: localStorage.getItem('email'),
                 favoriteRecipeIds: favoriteRecipeIds
             });
-            console.log(res);
-
         } catch (error) {
             console.log(error.response.data.message);
         }
     }
-
 
     function addFavoriteHandler(id) {
         setFavoriteRecipeIds((prevUserFavorites) => {
@@ -40,12 +35,12 @@ export function FavoriteRecipesContextProvider({ children }) {
         );
     }
 
-
     const context = {
         favoriteRecipeIds: favoriteRecipeIds,
         addFavorite: addFavoriteHandler,
         removeFavorite: removeFavoriteHandler
     }
+
     localStorage.setItem('favoriteRecipeIds', JSON.stringify(favoriteRecipeIds))
     updateFavListDB(favoriteRecipeIds)
 

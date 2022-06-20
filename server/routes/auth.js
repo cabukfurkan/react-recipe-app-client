@@ -26,8 +26,6 @@ router.post('/', async (req, res) => {
 
         const token = user.generateAuthToken();
         return res.status(200).send({ data: token, email: req.body.email, favoriteRecipeIds: user.favoriteRecipeIds, message: "Logged In" })
-        // email sent
-        // favoriteRecipeIds sent
 
     } catch (error) {
         res.status(500).send({ message: "internal server error" })

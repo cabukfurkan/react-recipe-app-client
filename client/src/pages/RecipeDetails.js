@@ -19,25 +19,10 @@ function RecipeDetails() {
     const favoritesCtx = useContext(FavoriteRecipesContext)
 
     useEffect(() => {
-        // (async () => {
-        //     try {
-        //         const response = await fetch(
-        //             `https://api.spoonacular.com/recipes/${id}/information?apiKey=${API_KEY}&includeNutrition=false`)
-
-        //         const data = await response.json()
-        //         setRecipe(data);
-        //         setIsAvailable(true)
-
-        //     } catch (error) {
-        //         console.log(error);
-        //     }
-        // })()
-
         fetch(`https://api.spoonacular.com/recipes/${id}/information?apiKey=${API_KEY}&includeNutrition=false`)
             .then((response) => response.json())
             .then(data => {
                 setRecipe(data)
-                console.log(data);
                 setIsAvailable(true)
             }).catch((error) => {
                 console.log(error);
