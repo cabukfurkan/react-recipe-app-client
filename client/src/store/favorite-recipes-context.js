@@ -1,4 +1,5 @@
 import { createContext, useState } from "react";
+import axios from "axios";
 
 const FavoriteRecipesContext = createContext({
     favoriteRecipeIds: [],
@@ -15,13 +16,29 @@ export function FavoriteRecipesContextProvider({ children }) {
         setFavoriteRecipeIds((prevUserFavorites) => {
             return prevUserFavorites.concat(id)
         })
+        updateFavListDB()
     }
+
     function removeFavoriteHandler(id) {
         setFavoriteRecipeIds(
             favoriteRecipeIds.filter((recipeId) => recipeId !== id)
         );
+        updateFavListDB()
     }
 
+    const updateFavListDB = async () => {
+        try {
+            const url = "http://localhost:8080/api/updateFav";
+            const { data: res } = await axios.put(url, {
+                email: localStorage.getItem('email'),
+                favoriteRecipeIds: favoriteRecipeIds
+            });
+            console.log(res);
+
+        } catch (error) {
+            console.log(error.response.data.message);
+        }
+    }
 
     const context = {
         favoriteRecipeIds: favoriteRecipeIds,

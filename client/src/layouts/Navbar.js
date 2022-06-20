@@ -1,10 +1,26 @@
 import React from 'react'
 import { Link } from 'react-router-dom';
 import styles from './Navbar.module.css'
+import axios from 'axios';
 
 function Navbar() {
+    // async function saveFavsToDb() {
+    //     try {
+    //         const url = "http://localhost:8080/api/users";
+    //         await axios.put(url
+    //             , {
+    //                 email: localStorage.getItem('email'),
+    //                 favoriteRecipeIds: JSON.parse(localStorage.getItem('favoriteRecipeIds'))
+    //             }
+    //         );
 
-    function handleLogOut() {
+    //     } catch (error) {
+    //         console.log(error);
+    //     }
+    // }
+
+    async function handleLogOut() {
+        // await saveFavsToDb()
         localStorage.removeItem('token')
         localStorage.removeItem('favoriteRecipeIds')
         localStorage.removeItem('email')
