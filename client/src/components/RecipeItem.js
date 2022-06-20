@@ -41,19 +41,18 @@ export default function RecipeItem({ recipe }) {
                         <div className={styles.favorite_hearth_container}>
                             {isFavoriteRecipe ? (
                                 <HeartSolid
-                                    onClick={(e) => {
+                                    onClick={async (e) => {
                                         e.preventDefault();
                                         e.stopPropagation();
-                                        favoritesCtx.removeFavorite(recipe.id);
+                                        await favoritesCtx.removeFavorite(recipe.id);
                                     }}
                                 />
                             ) : (
                                 <HeartRegular
-                                    onClick={(e) => {
+                                    onClick={async (e) => {
                                         e.stopPropagation();
                                         e.preventDefault();
-                                        favoritesCtx.addFavorite(recipe.id);
-                                        console.log(favoritesCtx);
+                                        await favoritesCtx.addFavorite(recipe.id);
                                     }}
                                 />
                             )}
