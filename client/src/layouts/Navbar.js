@@ -2,11 +2,12 @@ import React from 'react'
 import { Link } from 'react-router-dom';
 import styles from './Navbar.module.css'
 
-
 function Navbar() {
 
     function handleLogOut() {
         localStorage.removeItem('token')
+        localStorage.removeItem('favoriteRecipeIds')
+        localStorage.removeItem('email')
         window.location.reload()
     }
     return (

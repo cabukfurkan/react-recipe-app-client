@@ -23,8 +23,12 @@ function SignUp() {
             const url = "http://localhost:8080/api/auth";
             const { data: res } = await axios.post(url, data);
             localStorage.setItem('token', res.data)
+            // i sent email to local stroage for be able to fetch aktif users' favoriteids
+            localStorage.setItem('email', res.email)
+            localStorage.setItem('favoriteRecipeIds', JSON.stringify(res.favoriteRecipeIds))
             window.location = "/"
             console.log(res.message);
+
         } catch (error) {
             if (
                 error.response &&

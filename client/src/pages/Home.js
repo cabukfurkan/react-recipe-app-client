@@ -4,6 +4,7 @@ import Navbar from '../layouts/Navbar';
 import styles from './Home.module.css'
 import { API_KEY } from '../apiKey';
 
+
 function Home() {
     const [recipes, setRecipes] = useState("");
 
