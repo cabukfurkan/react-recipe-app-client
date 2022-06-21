@@ -1,7 +1,6 @@
 import React from 'react'
 import { useState } from 'react'
 import Navbar from '../layouts/Navbar'
-// import { API_KEY } from '../apiKey'
 import FoundRecipeList from '../components/FoundRecipeList'
 import styles from './RecipeFinder.module.css'
 
@@ -19,8 +18,8 @@ function RecipeFinder() {
             .then((data) => {
                 setRecipes(data);
             })
-            .catch(() => {
-                console.log("error");
+            .catch((error) => {
+                console.log(error);
             });
     }
     function handleChange(e) {

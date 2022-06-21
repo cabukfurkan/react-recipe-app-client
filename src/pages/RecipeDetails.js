@@ -3,55 +3,32 @@ import { useContext } from 'react'
 import { useState } from 'react'
 import { useParams } from 'react-router-dom'
 import FavoriteRecipesContext from '../store/favorite-recipes-context'
-import { apiCallTime, apiKeys, API_KEY } from '../apiKeys'
 import styles from './RecipeDetails.module.css'
 import RecipeInstructionsList from '../components/RecipeInstructionsList'
 import Navbar from '../layouts/Navbar'
 import { ReactComponent as HeartRegular } from '../assets/heart-regular.svg';
 import { ReactComponent as HeartSolid } from '../assets/heart-solid.svg'
 import ReactLoading from 'react-loading'
-import { useDispatch, useSelector } from 'react-redux'
-import { UpdateApiKey } from '../store/action/updateApi'
+
 
 function RecipeDetails() {
-    // apikey op
-    const getApiKey = useSelector((state) => state.apiKey_Data.apiKey)
-    const dispatch = useDispatch()
-
-    const changeApiKey = () => {
-        let currentApi = apiKeys[apiCallTime]
-        dispatch(UpdateApiKey(currentApi))
-        console.log('api key error status code 402 BUT DO NOT WORK API HAS BEEN CHANGED');
-
-        apiCallTime++
-
-        if (apiCallTime > 10) {
-            apiCallTime = 0
-        }
-    }
-    // 
-
     const { id } = useParams()
     const [recipe, setRecipe] = useState([])
     const [isAvailable, setIsAvailable] = useState(false)
 
     const favoritesCtx = useContext(FavoriteRecipesContext)
+    const API_KEY = process.env.REACT_APP_API_KEY
+
 
     useEffect(() => {
-        fetch(`https://api.spoonacular.com/recipes/${id}/information?apiKey=${getApiKey}&includeNutrition=false`)
+        fetch(`https://api.spoonacular.com/recipes/${id}/information?apiKey=${API_KEY}&includeNutrition=false`)
             .then((response) => response.json())
             .then(data => {
                 setRecipe(data)
                 setIsAvailable(true)
             }).catch((error) => {
-                if (error.response) {
-                    if (error.response.status) {
-                        changeApiKey()
-                    }
-                }
                 console.log(error);
             })
-        // }, [id]);
     }, []);
 
     const isFavoriteRecipe = favoritesCtx.favoriteRecipeIds.find((id) => id === recipe.id)
