@@ -3,24 +3,53 @@ import FavoriteRecipesContext from '../store/favorite-recipes-context';
 import { ReactComponent as HeartRegular } from '../assets/heart-regular.svg';
 import { ReactComponent as HeartSolid } from '../assets/heart-solid.svg'
 import styles from './RecipeItem.module.css'
-import { API_KEY } from "../apiKey";
+import { apiCallTime, apiKeys } from "../apiKeys";
 import { Link } from "react-router-dom";
 import ReactLoading from 'react-loading'
+import { useDispatch, useSelector } from "react-redux";
+import { UpdateApiKey } from "../store/action/updateApi";
 
 export default function RecipeItem({ recipe }) {
+
+
+    // apikey op
+
+    const getApiKey = useSelector((state) => state.apiKey_Data.apiKey)
+
+    const dispatch = useDispatch()
+
+    const changeApiKey = () => {
+
+        let currentApi = apiKeys[apiCallTime]
+        dispatch(UpdateApiKey(currentApi))
+        console.log('api key error status code 402 BUT DO NOT WORK API HAS BEEN CHANGED');
+
+        apiCallTime++
+
+        if (apiCallTime > 10) {
+            apiCallTime = 0
+        }
+    }
+    // 
+
     const [recipeData, setRecipeData] = useState();
     const favoritesCtx = useContext(FavoriteRecipesContext);
     const isFavoriteRecipe = favoritesCtx.favoriteRecipeIds.find((id) => id === recipe.id);
 
     useEffect(() => {
         fetch(
-            `https://api.spoonacular.com/recipes/${recipe.id}/information?apiKey=${API_KEY}&includeNutrition=false`
+            `https://api.spoonacular.com/recipes/${recipe.id}/information?apiKey=${getApiKey}&includeNutrition=false`
         )
             .then((response) => response.json())
             .then((data) => {
                 setRecipeData(data);
             })
-            .catch(() => {
+            .catch((error) => {
+                if (error.response) {
+                    if (error.response.status) {
+                        changeApiKey()
+                    }
+                }
                 console.log("error");
             });
     }, [recipe.id]);
