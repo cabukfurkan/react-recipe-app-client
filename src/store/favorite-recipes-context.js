@@ -10,9 +10,11 @@ const FavoriteRecipesContext = createContext({
 export function FavoriteRecipesContextProvider({ children }) {
     const [favoriteRecipeIds, setFavoriteRecipeIds] = useState(JSON.parse(localStorage.getItem('favoriteRecipeIds')))
 
+    const SERVER_URL = process.env.REACT_APP_SERVER_URL
+
     const updateFavListDB = async (favoriteRecipeIds) => {
         try {
-            const url = "http://localhost:8080/api/updateFav";
+            const url = `${SERVER_URL}api/updateFav`;
             await axios.put(url, {
                 email: localStorage.getItem('email'),
                 favoriteRecipeIds: favoriteRecipeIds

@@ -1,13 +1,15 @@
 import React from 'react'
 import { useState } from 'react'
 import Navbar from '../layouts/Navbar'
-import { API_KEY } from '../apiKey'
+// import { API_KEY } from '../apiKey'
 import FoundRecipeList from '../components/FoundRecipeList'
 import styles from './RecipeFinder.module.css'
 
 function RecipeFinder() {
     const [recipes, setRecipes] = useState(null)
     const [searchValue, setSearchValue] = useState('')
+
+    const API_KEY = process.env.REACT_APP_API_KEY
 
     function getMealData() {
         fetch(

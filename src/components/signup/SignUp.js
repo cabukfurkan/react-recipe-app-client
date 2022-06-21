@@ -5,6 +5,7 @@ import { useState } from "react";
 import axios from "axios";
 
 function SignUp() {
+  const SERVER_URL = process.env.REACT_APP_SERVER_URL
   const [data, setData] = useState({
     firstName: "",
     lastName: "",
@@ -23,7 +24,7 @@ function SignUp() {
     e.preventDefault();
 
     try {
-      const url = "http://localhost:8080/api/users";
+      const url = `${SERVER_URL}api/users`;
       const { data: res } = await axios.post(url, data);
       navigate("/login");
       console.log(res.message);

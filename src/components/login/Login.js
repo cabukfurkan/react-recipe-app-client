@@ -5,6 +5,9 @@ import { useState } from "react";
 import axios from "axios";
 
 function SignUp() {
+
+    const SERVER_URL = process.env.REACT_APP_SERVER_URL
+
     const [data, setData] = useState({
         email: "",
         password: "",
@@ -20,7 +23,7 @@ function SignUp() {
         e.preventDefault();
 
         try {
-            const url = "http://localhost:8080/api/auth";
+            const url = `${SERVER_URL}api/auth`;
             const { data: res } = await axios.post(url, data);
             localStorage.setItem('token', res.data)
             // i sent email to local stroage for be able to fetch aktif users' favoriteids
