@@ -40,7 +40,7 @@
 
 > User information must be saved to MongoDB
 
-> Entered username and password must be entered correct
+> Username and password must be entered correct
 
 > When logged in users favored recipes must be fetched from MongoDB.
 
